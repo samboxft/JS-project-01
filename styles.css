@@ -1,0 +1,120 @@
+@font-face {
+    font-family: arvo;
+    src: url(/assets/fonts/Arvo-Italic.ttf);
+}
+body {
+    background-image: url(/assets/tile.jpg);
+}
+
+#header {
+    font-family: arvo;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bolder;
+    text-shadow: #d1d374 1.5px 1.5px;
+    color: #3c4a64;
+
+}
+
+
+.outerBox {
+    background-image: url(/assets/formbg.jpg);
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto;
+    /* /* text-align: center; */
+    padding-top: 1em;
+    height: 220px;
+    width: 50%;
+    text-align: center;
+    border: 2px solid #f7676e;
+    border-radius: 1px;
+}
+
+#todoBox {
+    justify-content: center;
+    display: block;
+    margin-top: 1ex;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    resize: none;
+    border: 1px solid #888;
+
+}
+
+
+.dateAndTime {
+    margin-top: 6mm;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Montserrat', sans-serif;
+    background: none;
+    border: none;
+}
+
+
+
+.buttons {
+
+text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    margin-top:.5mm;
+    border-color:#f7676e ;
+}
+
+
+
+
+#container{
+    background-image: url(/assets/images/notebg.png);
+}
+/* }
+.notes {
+
+    height: 250px;
+    width: 200px;
+    margin: 20px;
+    padding: 30px;
+    padding-left: 20px;
+    display: inline-block; 
+    word-wrap: break-word; 
+}
+.top {
+    height: 20px;
+    margin: 20px;
+    padding: 30px;
+    padding-left: 20px;
+    display: inline-block;
+    word-wrap: break-word;
+} */
+/* .note {
+    background-image: url(/assets/images/notebg.png);
+    height: 250px;
+    width: 200px;
+    margin: 20px;
+    padding: 30px;
+    padding-left: 20px;
+} */
+/* 
+
+.top{
+    height: 20px;
+    margin: 20px;
+    padding: 30px;
+    padding-left: 20px;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+.bottom{
+    height: 20px;
+}
+
+p {
+    height: 150px;
+    overflow: scroll;
+    overflow-x: hidden;
+} */
