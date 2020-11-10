@@ -16,7 +16,7 @@ function saveTask() {
     // Load all tasks from local storage: 
     let allTasks = [];
     let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks != null) {
+    if (stringyTasks) {
         allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
     }
 
@@ -45,7 +45,7 @@ function displayAllTasks() {
 
     let allTasks = [];
     let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks != null) {
+    if (stringyTasks) {
         allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
     }
 
@@ -101,7 +101,7 @@ function displayAllTasks() {
 function deleteB(i) {
     let allTasks = [];
     let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks != null) {
+    if (stringyTasks) {
         allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
 
 
