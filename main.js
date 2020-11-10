@@ -13,6 +13,18 @@ function saveTask() {
     // Create task object: 
     const task = { todo, date, time };
 
+    addTask(task);
+
+    displayAllTasks();
+
+    // Clear all text boxes: 
+    todoBox.value = "";
+    dateBox.value = "";
+    timeBox.value = "";
+    todoBox.focus();
+}
+
+function addTask(task) {
     // Load all tasks from local storage: 
     let allTasks = [];
     let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
@@ -26,14 +38,6 @@ function saveTask() {
     // Save the new array back to local storage: 
     tasksJson = JSON.stringify(allTasks);
     localStorage.setItem("allTasks", tasksJson);
-
-    displayAllTasks();
-
-    // Clear all text boxes: 
-    todoBox.value = "";
-    dateBox.value = "";
-    timeBox.value = "";
-    todoBox.focus();
 }
 
 function displayAllTasks() {
