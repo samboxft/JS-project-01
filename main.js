@@ -23,22 +23,6 @@ function saveTask() {
     todoBox.focus();
 }
 
-function addTask(task) {
-    // Load all tasks from local storage: 
-    let allTasks = [];
-    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (tasksJson) {
-        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
-    }
-
-    // Add the new task to the array:
-    allTasks.push(task);
-
-    // Save the new array back to local storage: 
-    tasksJson = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", tasksJson);
-}
-
 function displayAllTasks() {
 
     // Get container todoM object: 
@@ -100,7 +84,21 @@ function deleteB(i) {
     displayAllTasks();
 }
 
-displayAllTasks();
+function addTask(task) {
+    // Load all tasks from local storage: 
+    let allTasks = [];
+    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
+    if (tasksJson) {
+        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
+    }
+
+    // Add the new task to the array:
+    allTasks.push(task);
+
+    // Save the new array back to local storage: 
+    tasksJson = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", tasksJson);
+}
 
 function deleteTask(i) {
     let allTasks = [];
@@ -113,3 +111,4 @@ function deleteTask(i) {
     localStorage.setItem("allTasks", tasksJson);
 }
 
+displayAllTasks();
