@@ -15,17 +15,17 @@ function saveTask() {
 
     // Load all tasks from local storage: 
     let allTasks = [];
-    let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks) {
-        allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
+    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
+    if (tasksJson) {
+        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
     }
 
     // Add the new task to the array:
     allTasks.push(task);
 
     // Save the new array back to local storage: 
-    stringyTasks = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", stringyTasks);
+    tasksJson = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", tasksJson);
 
     displayAllTasks();
 
@@ -44,9 +44,9 @@ function displayAllTasks() {
     // Load Tasks from local storage
 
     let allTasks = [];
-    let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks) {
-        allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
+    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
+    if (tasksJson) {
+        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
     }
 
     //clear container
@@ -100,9 +100,9 @@ function displayAllTasks() {
 
 function deleteB(i) {
     let allTasks = [];
-    let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks) {
-        allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
+    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
+    if (tasksJson) {
+        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
 
 
         allTasks.splice(i, 1);
@@ -110,8 +110,8 @@ function deleteB(i) {
 
     }
 
-    stringyTasks = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", stringyTasks);
+    tasksJson = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", tasksJson);
     displayAllTasks();
 }
 
