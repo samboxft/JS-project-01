@@ -81,31 +81,27 @@ function deleteB(i) {
 }
 
 function addTask(task) {
-
     const allTasks = getAllTasks();
-
     // Add the new task to the array:
     allTasks.push(task);
-
-    // Save the new array back to local storage: 
     saveAllTasks(allTasks);
 }
 
 function deleteTask(i) {
     const allTasks = getAllTasks();
+    // Remove task #i from the array:
     allTasks.splice(i, 1);
     saveAllTasks(allTasks);
 }
 
 function getAllTasks() {
     const tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
-    const allTasks = tasksJson ? JSON.parse(tasksJson) : []; // המרה של מחרוזת למשהו אחר
-    return allTasks;
+    return tasksJson ? JSON.parse(tasksJson) : [];
 }
 
 function saveAllTasks(allTasks) {
-    const tasksJson = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", tasksJson);
+    // Save the new array back to local storage: 
+    localStorage.setItem("allTasks", JSON.stringify(allTasks));
 }
 
 displayAllTasks();
