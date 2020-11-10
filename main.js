@@ -88,15 +88,13 @@ function addTask(task) {
     allTasks.push(task);
 
     // Save the new array back to local storage: 
-    tasksJson = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", tasksJson);
+    saveAllTasks(allTasks);
 }
 
 function deleteTask(i) {
     let allTasks = getAllTasks();
     allTasks.splice(i, 1);
-    tasksJson = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", tasksJson);
+    saveAllTasks(allTasks);
 }
 
 function getAllTasks() {
@@ -106,6 +104,11 @@ function getAllTasks() {
         allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
     }
     return allTasks;
+}
+
+function saveAllTasks(allTasks) {
+    const tasksJson = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", tasksJson);
 }
 
 displayAllTasks();
