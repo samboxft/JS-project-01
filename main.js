@@ -30,11 +30,7 @@ function displayAllTasks() {
 
     // Load Tasks from local storage
 
-    let allTasks = [];
-    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (tasksJson) {
-        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
-    }
+    let allTasks = getAllTasks();
 
     //clear container
     container.innerHTML = "";
@@ -85,12 +81,8 @@ function deleteB(i) {
 }
 
 function addTask(task) {
-    // Load all tasks from local storage: 
-    let allTasks = [];
-    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (tasksJson) {
-        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
-    }
+
+    let allTasks = getAllTasks();
 
     // Add the new task to the array:
     allTasks.push(task);
@@ -101,14 +93,19 @@ function addTask(task) {
 }
 
 function deleteTask(i) {
+    let allTasks = getAllTasks();
+    allTasks.splice(i, 1);
+    tasksJson = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", tasksJson);
+}
+
+function getAllTasks() {
     let allTasks = [];
     let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
     if (tasksJson) {
         allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
-        allTasks.splice(i, 1);
     }
-    tasksJson = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", tasksJson);
+    return allTasks;
 }
 
 displayAllTasks();
