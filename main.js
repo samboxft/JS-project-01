@@ -1,4 +1,3 @@
-
 function saveTask() {
     // Take todoM objects:
     const todoBox = document.getElementById("todoBox");
@@ -66,13 +65,8 @@ function displayAllTasks() {
         notes.setAttribute("class", "notes");
         container.appendChild(notes);
 
-
         const top = document.createElement("div");
         top.setAttribute("class", "top");
-
-
-
-
 
         //delete button, set attributes:{ "type", "class bootstrap", "onclickDeleteB" } add del event 
         const deleteB = document.createElement("button");
@@ -101,29 +95,21 @@ function displayAllTasks() {
     }
 }
 
-
 function deleteB(i) {
+    deleteTask(i);
+    displayAllTasks();
+}
+
+displayAllTasks();
+
+function deleteTask(i) {
     let allTasks = [];
     let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
     if (tasksJson) {
         allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
-
-
         allTasks.splice(i, 1);
-        container.innerHTML = "";
-
     }
-
     tasksJson = JSON.stringify(allTasks);
     localStorage.setItem("allTasks", tasksJson);
-    displayAllTasks();
 }
-
-
-
-
-displayAllTasks();
-
-
-
 
