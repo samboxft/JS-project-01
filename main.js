@@ -80,6 +80,10 @@ function deleteB(i) {
     displayAllTasks();
 }
 
+/**
+ * Add a new task object to local storage.
+ * @param {*} task New task object.
+ */
 function addTask(task) {
     const allTasks = getAllTasks();
     // Add the new task to the array:
@@ -87,6 +91,10 @@ function addTask(task) {
     saveAllTasks(allTasks);
 }
 
+/**
+ * Remove a task from local storage.
+ * @param {number} i Index of the task to delete.
+ */
 function deleteTask(i) {
     const allTasks = getAllTasks();
     // Remove task #i from the array:
@@ -94,11 +102,19 @@ function deleteTask(i) {
     saveAllTasks(allTasks);
 }
 
+/**
+ * Read the task array from local storage.
+ * @returns {[*]} An array of tasks.
+ */
 function getAllTasks() {
     const tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
     return tasksJson ? JSON.parse(tasksJson) : [];
 }
 
+/**
+ * Write the task array back to local storage.
+ * @param {[*]} allTasks The new array.
+ */
 function saveAllTasks(allTasks) {
     // Save the new array back to local storage: 
     localStorage.setItem("allTasks", JSON.stringify(allTasks));
