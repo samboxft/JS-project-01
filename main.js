@@ -30,7 +30,7 @@ function displayAllTasks() {
 
     // Load Tasks from local storage
 
-    let allTasks = getAllTasks();
+    const allTasks = getAllTasks();
 
     //clear container
     container.innerHTML = "";
@@ -82,7 +82,7 @@ function deleteB(i) {
 
 function addTask(task) {
 
-    let allTasks = getAllTasks();
+    const allTasks = getAllTasks();
 
     // Add the new task to the array:
     allTasks.push(task);
@@ -92,17 +92,14 @@ function addTask(task) {
 }
 
 function deleteTask(i) {
-    let allTasks = getAllTasks();
+    const allTasks = getAllTasks();
     allTasks.splice(i, 1);
     saveAllTasks(allTasks);
 }
 
 function getAllTasks() {
-    let allTasks = [];
-    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (tasksJson) {
-        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
-    }
+    const tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
+    const allTasks = tasksJson ? JSON.parse(tasksJson) : []; // המרה של מחרוזת למשהו אחר
     return allTasks;
 }
 
