@@ -1,18 +1,15 @@
 function saveTask() {
+
     // Take todoM objects:
     const todoBox = document.getElementById("todoBox");
     const dateBox = document.getElementById("dateBox");
     const timeBox = document.getElementById("timeBox");
 
-    // Take todo values: 
-    const todo = todoBox.value;
-    const date = dateBox.value;
-    const time = timeBox.value;
-
-    // Create task object: 
-    const task = { todo, date, time };
-
-    addTask(task);
+    addTask({
+        todo: todoBox.value,
+        date: dateBox.value,
+        time: timeBox.value,
+    });
 
     displayAllTasks();
 
@@ -28,19 +25,16 @@ function displayAllTasks() {
     // Get container todoM object: 
     const container = document.getElementById("container");
 
-    // Load Tasks from local storage
-
-    const allTasks = getAllTasks();
-
     //clear container
     container.innerHTML = "";
 
+    // Load Tasks from local storage
+    const allTasks = getAllTasks();
+
     //display 
     for (let i = 0; i < allTasks.length; i++) {
-        //get container
-        const container = document.getElementById("container");
 
-        //  create container div: 
+        // create container div: 
         const notes = document.createElement("div");
         notes.setAttribute("class", "notes");
         container.appendChild(notes);
@@ -52,7 +46,7 @@ function displayAllTasks() {
         const deleteB = document.createElement("button");
         deleteB.setAttribute("type", "button");
         deleteB.setAttribute("class", "deleteB btn btn-info btn-sm");
-        deleteB.setAttribute("onclick", "deleteB(" + i + ")");
+        deleteB.setAttribute("onclick", `deleteB(${i})`);
         top.appendChild(deleteB);
 
         //span for glyph icon
@@ -63,14 +57,14 @@ function displayAllTasks() {
         //display note
         const p = document.createElement("p");
         top.appendChild(p);
-        p.innerHTML = allTasks[i].todo + "<br>";
+        p.innerHTML = `${allTasks[i].todo}<br>`;
         //add top div to container
         notes.appendChild(top);
 
         // Div for date and time
         const bottom = document.createElement("div");
         bottom.setAttribute("class", "dateNTime");
-        bottom.innerHTML = "Finish by: " + allTasks[i].date + "<br>" + "To be exact: " + allTasks[i].time;
+        bottom.innerHTML = `Finish by: ${allTasks[i].date}<br>To be exact: ${allTasks[i].time}`;
         top.appendChild(bottom);
     }
 }
