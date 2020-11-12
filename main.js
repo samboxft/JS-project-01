@@ -62,20 +62,20 @@ function displayAllTasks() {
     // Get container todoM object: 
     const container = document.getElementById("container");
 
-    let allTasks = getAllTasksFromLocalStorage();
-
     //clear container
     container.innerHTML = "";
 
+    let allTasks = getAllTasksFromLocalStorage();
+
     //display 
     for (let i = 0; i < allTasks.length; i++) {
-        //get container
-        const container = document.getElementById("container");
 
         //  create container div: 
-        const notes = document.createElement("div");
-        notes.setAttribute("class", "notes");
-        container.appendChild(notes);
+        const note = document.createElement("div");
+        note.setAttribute("style", "min-width: 200px; min-height: 250px;")
+        note.setAttribute("class", "notes");
+        note.classList.add("col-xs-3");
+        container.appendChild(note);
 
         const top = document.createElement("div");
         top.setAttribute("class", "top");
@@ -97,7 +97,7 @@ function displayAllTasks() {
         top.appendChild(p)
         p.innerHTML = allTasks[i].todo + "<br>";
         //add top div to container
-        notes.appendChild(top)
+        note.appendChild(top)
 
         // Div for date and time
         const bottom = document.createElement("div");

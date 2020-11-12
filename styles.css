@@ -2,6 +2,7 @@
     font-family: arvo;
     src: url(/assets/fonts/Arvo-Italic.ttf);
 }
+
 body {
     background-image: url(/assets/tile.jpg);
 }
@@ -14,6 +15,11 @@ body {
     text-shadow: #d1d374 1.5px 1.5px;
     color: #3c4a64;
 
+}
+
+.notes {
+    background-image: url(/assets/notebg.png);
+    background-repeat: no-repeat;
 }
 
 
@@ -69,7 +75,6 @@ text-align: center;
 
 
 #container{
-    background-image: url(/assets/notebg.png);
 }
 /* }
 .notes {
