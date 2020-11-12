@@ -72,38 +72,36 @@ function displayAllTasks() {
 
         //  create container div: 
         const note = document.createElement("div");
+        note.classList.add("notes", "col-xs-3");
         note.setAttribute("style", "min-width: 200px; min-height: 250px;")
-        note.setAttribute("class", "notes");
-        note.classList.add("col-xs-3");
         container.appendChild(note);
 
         const top = document.createElement("div");
-        top.setAttribute("class", "top");
+        top.classList.add("top");
+        note.appendChild(top)
 
         //delete button, set attributes:{ "type", "class bootstrap", "onclickDeleteB" } add del event 
         const deleteB = document.createElement("button");
+        deleteB.classList.add("deleteB", "btn", "btn-info", "btn-sm");
         deleteB.setAttribute("type", "button");
-        deleteB.setAttribute("class", "deleteB btn btn-info btn-sm");
         deleteB.setAttribute("onclick", "deleteB(" + i + ")");
         top.appendChild(deleteB);
 
         //span for glyph icon
         const span = document.createElement("span");
-        span.setAttribute("class", "glyphicon glyphicon-remove");
+        span.classList.add("glyphicon", "glyphicon-remove");
         deleteB.appendChild(span);
 
         //display note
         const p = document.createElement("p");
-        top.appendChild(p)
         p.innerHTML = allTasks[i].todo + "<br>";
-        //add top div to container
-        note.appendChild(top)
+        top.appendChild(p)
 
         // Div for date and time
         const bottom = document.createElement("div");
-        bottom.setAttribute("class", "dateNTime");
+        bottom.classList.add("dateNTime");
         bottom.innerHTML = "Finish by: " + allTasks[i].date + "<br>" + "To be exact: " + allTasks[i].time;
-        top.appendChild(bottom);
+        note.appendChild(bottom);
     }
 }
 
