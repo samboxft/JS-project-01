@@ -1,3 +1,43 @@
+function getAllTasksFromLocalStorage() {
+    let allTasks = [];
+    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
+    if (tasksJson) {
+        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
+    }
+    return allTasks;
+}
+
+function addTaskToLocalStorage(task) {
+    // Load all tasks from local storage: 
+    let allTasks = [];
+    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
+    if (tasksJson) {
+        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
+    }
+   
+
+    // Add the new task to the array:
+    allTasks.push(task);
+
+    // Save the new array back to local storage: 
+    tasksJson = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", tasksJson);
+}
+
+function deleteTaskFromLocalStorage(i) {
+    let allTasks = [];
+    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
+    if (tasksJson) {
+        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
+    }
+
+    // Remove task #i
+    allTasks.splice(i, 1);
+
+    // Write the task array back to local storage.
+    tasksJson = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", tasksJson);
+}
 
 function saveTask() {
     // Take todoM objects:
@@ -13,19 +53,7 @@ function saveTask() {
     // Create task object: 
     const task = { todo, date, time };
 
-    // Load all tasks from local storage: 
-    let allTasks = [];
-    let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks != null) {
-        allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
-    }
-
-    // Add the new task to the array:
-    allTasks.push(task);
-
-    // Save the new array back to local storage: 
-    stringyTasks = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", stringyTasks);
+    addTaskToLocalStorage(task);
 
     displayAllTasks();
 
@@ -41,13 +69,7 @@ function displayAllTasks() {
     // Get container todoM object: 
     const container = document.getElementById("container");
 
-    // Load Tasks from local storage
-
-    let allTasks = [];
-    let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks != null) {
-        allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
-    }
+    let allTasks = getAllTasksFromLocalStorage();
 
     //clear container
     container.innerHTML = "";
@@ -62,13 +84,8 @@ function displayAllTasks() {
         notes.setAttribute("class", "notes");
         container.appendChild(notes);
 
-
         const top = document.createElement("div");
         top.setAttribute("class", "top");
-
-
-
-
 
         //delete button, set attributes:{ "type", "class bootstrap", "onclickDeleteB" } add del event 
         const deleteB = document.createElement("button");
@@ -97,29 +114,9 @@ function displayAllTasks() {
     }
 }
 
-
 function deleteB(i) {
-    let allTasks = [];
-    let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks != null) {
-        allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
-
-
-        allTasks.splice(i, 1);
-        container.innerHTML = "";
-
-    }
-
-    stringyTasks = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", stringyTasks);
+    deleteTaskFromLocalStorage(i);
     displayAllTasks();
 }
 
-
-
-
 displayAllTasks();
-
-
-
-
