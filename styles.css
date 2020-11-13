@@ -19,6 +19,8 @@ body {
 .notes {
     background-image: url(/assets/notebg.png);
     background-repeat: no-repeat;
+    min-width: 200px; 
+    min-height: 250px;
 }
 
 .outerBox {
