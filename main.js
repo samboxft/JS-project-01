@@ -84,7 +84,7 @@ function displayAllTasks() {
         const deleteB = document.createElement("button");
         deleteB.classList.add("deleteB", "btn", "btn-info", "btn-sm");
         deleteB.setAttribute("type", "button");
-        deleteB.setAttribute("onclick", "deleteB(" + i + ")");
+        deleteB.setAttribute("onclick", `deleteB(${i})`);
         top.appendChild(deleteB);
 
         //span for glyph icon
@@ -94,13 +94,13 @@ function displayAllTasks() {
 
         //display note
         const p = document.createElement("p");
-        p.innerHTML = allTasks[i].todo + "<br>";
+        p.innerHTML = allTasks[i].todo;
         top.appendChild(p)
 
         // Div for date and time
         const bottom = document.createElement("div");
         bottom.classList.add("dateNTime");
-        bottom.innerHTML = "Finish by: " + allTasks[i].date + "<br>" + "To be exact: " + allTasks[i].time;
+        bottom.innerHTML = `Finish by: ${allTasks[i].date}<br>To be exact: ${allTasks[i].time}`;
         note.appendChild(bottom);
     }
 }
