@@ -95,7 +95,7 @@ function displayAllTasks() {
         //display note
         const p = document.createElement("p");
         p.innerHTML = allTasks[i].todo;
-        top.appendChild(p)
+        note.appendChild(p)
 
         // Div for date and time
         const bottom = document.createElement("div");
