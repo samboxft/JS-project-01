@@ -1,5 +1,39 @@
+function getAllTasksFromLocalStorage() {
+    let allTasks = [];
+    let tasksJson = localStorage.getItem("allTasks"); // return null if there is no array!
+    if (tasksJson) {
+        allTasks = JSON.parse(tasksJson); // המרה של מחרוזת למשהו אחר
+    }
+    return allTasks;
+}
+
+function saveAllTasksToLocalStorage(allTasks) {
+    const tasksJson = JSON.stringify(allTasks);
+    localStorage.setItem("allTasks", tasksJson);
+}
+
+function addTaskToLocalStorage(task) {
+
+    const allTasks = getAllTasksFromLocalStorage();
+
+    // Add the new task to the array:
+    allTasks.push(task);
+
+    saveAllTasksToLocalStorage(allTasks);
+}
+
+function deleteTaskFromLocalStorage(i) {
+
+    const allTasks = getAllTasksFromLocalStorage();
+
+    // Remove task #i
+    allTasks.splice(i, 1);
+
+    saveAllTasksToLocalStorage(allTasks);
+}
 
 function saveTask() {
+    
     // Take todoM objects:
     const todoBox = document.getElementById("todoBox");
     const dateBox = document.getElementById("dateBox");
@@ -13,19 +47,7 @@ function saveTask() {
     // Create task object: 
     const task = { todo, date, time };
 
-    // Load all tasks from local storage: 
-    let allTasks = [];
-    let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks != null) {
-        allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
-    }
-
-    // Add the new task to the array:
-    allTasks.push(task);
-
-    // Save the new array back to local storage: 
-    stringyTasks = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", stringyTasks);
+    addTaskToLocalStorage(task);
 
     displayAllTasks();
 
@@ -41,85 +63,53 @@ function displayAllTasks() {
     // Get container todoM object: 
     const container = document.getElementById("container");
 
-    // Load Tasks from local storage
-
-    let allTasks = [];
-    let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks != null) {
-        allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
-    }
-
-    //clear container
+    // clear container
     container.innerHTML = "";
 
-    //display 
+    let allTasks = getAllTasksFromLocalStorage();
+
+    // display 
     for (let i = 0; i < allTasks.length; i++) {
-        //get container
-        const container = document.getElementById("container");
 
-        //  create container div: 
-        const notes = document.createElement("div");
-        notes.setAttribute("class", "notes");
-        container.appendChild(notes);
-
+        // create container div: 
+        const note = document.createElement("div");
+        note.classList.add("notes", "col-xs-3");
 
         const top = document.createElement("div");
-        top.setAttribute("class", "top");
+        top.classList.add("top");
 
-
-
-
-
-        //delete button, set attributes:{ "type", "class bootstrap", "onclickDeleteB" } add del event 
+        // delete button, set attributes:{ "type", "class bootstrap", "onclickDeleteB" } add del event 
         const deleteB = document.createElement("button");
+        deleteB.classList.add("deleteB", "btn", "btn-info", "btn-sm");
         deleteB.setAttribute("type", "button");
-        deleteB.setAttribute("class", "deleteB btn btn-info btn-sm");
-        deleteB.setAttribute("onclick", "deleteB(" + i + ")");
-        top.appendChild(deleteB);
+        deleteB.setAttribute("onclick", `deleteB(${i})`);
 
-        //span for glyph icon
+        // span for glyph icon
         const span = document.createElement("span");
-        span.setAttribute("class", "glyphicon glyphicon-remove");
-        deleteB.appendChild(span);
+        span.classList.add("glyphicon", "glyphicon-remove");
 
-        //display note
+        // display note
         const p = document.createElement("p");
-        top.appendChild(p)
-        p.innerHTML = allTasks[i].todo + "<br>";
-        //add top div to container
-        notes.appendChild(top)
+        p.innerHTML = allTasks[i].todo;
 
         // Div for date and time
         const bottom = document.createElement("div");
-        bottom.setAttribute("class", "dateNTime");
-        bottom.innerHTML = "Finish by: " + allTasks[i].date + "<br>" + "To be exact: " + allTasks[i].time;
-        top.appendChild(bottom);
+        bottom.classList.add("dateNTime");
+        bottom.innerHTML = `Finish by: ${allTasks[i].date}<br>To be exact: ${allTasks[i].time}`;
+
+        // Connect all the elements to each other and add them to the document.
+        deleteB.appendChild(span);
+        top.appendChild(deleteB);
+        note.appendChild(top)
+        note.appendChild(p)
+        note.appendChild(bottom);
+        container.appendChild(note);
     }
 }
 
-
 function deleteB(i) {
-    let allTasks = [];
-    let stringyTasks = localStorage.getItem("allTasks"); // return null if there is no array!
-    if (stringyTasks != null) {
-        allTasks = JSON.parse(stringyTasks); // המרה של מחרוזת למשהו אחר
-
-
-        allTasks.splice(i, 1);
-        container.innerHTML = "";
-
-    }
-
-    stringyTasks = JSON.stringify(allTasks);
-    localStorage.setItem("allTasks", stringyTasks);
+    deleteTaskFromLocalStorage(i);
     displayAllTasks();
 }
 
-
-
-
 displayAllTasks();
-
-
-
-
